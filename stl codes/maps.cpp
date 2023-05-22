@@ -18,5 +18,10 @@ int main(){
     for(auto &p : m){
         cout<<p.first<<" "<<p.second<<endl;      
     }
+    auto it = m.find(3);
+    if(it == m.end())
+        cout<<" no value "<< endl;
+    else cout<<(*it).first<<" "<<(*it).second<<endl;
+    return 0;
 
 }
