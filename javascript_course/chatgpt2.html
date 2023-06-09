@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock Paper Scissors Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .choices {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .choice {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        
+        .result {
+            font-size: 24px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .restart-button {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .restart-button:hover {
+            background-color: #555;
+        }
+        
+        /* Added styles for images */
+        .choice img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Rock Paper Scissors</h1>
+        <div class="choices">
+            <div class="choice" onclick="playGame('rock')">
+                <img src="rock.png" alt="Rock">
+            </div>
+            <div class="choice" onclick="playGame('paper')">
+                <img src="paper.png" alt="Paper">
+            </div>
+            <div class="choice" onclick="playGame('scissors')">
+                <img src="scissors.png" alt="Scissors">
+            </div>
+        </div>
+        <div class="result" id="result"></div>
+        <a href="#" class="restart-button" onclick="restartGame()">Restart</a>
+    </div>
+
+    <script>
+        var userChoice;
+        var computerChoice;
+        
+        function playGame(choice) {
+            userChoice = choice;
+            computerChoice = getComputerChoice();
+            
+            var result = determineWinner();
+            
+            displayResult(result);
+        }
+        
+        function getComputerChoice() {
+            var choices = ['rock', 'paper', 'scissors'];
+            var randomIndex = Math.floor(Math.random() * choices.length);
+            return choices[randomIndex];
+        }
+        
+        function determineWinner() {
+            if (userChoice === computerChoice) {
+                return 'It\'s a tie!';
+            } else if (userChoice === 'rock') {
+                if (computerChoice === 'paper') {
+                    return 'You lose! Paper beats rock.';
+                } else {
+                    return 'You win! Rock beats scissors.';
+                }
+            } else if (userChoice === 'paper') {
+                if (computerChoice === 'scissors') {
+                    return 'You lose! Scissors beats paper.';
+                } else {
+                    return 'You win! Paper beats rock.';
+                }
+            } else if (userChoice === 'scissors') {
+                if (computerChoice === 'rock') {
+                    return 'You lose! Rock beats scissors.';
+                } else {
+                    return 'You win! Scissors beats paper.';
+                }
+            }
+        }
+        
+        function displayResult(result) {
+            document.getElementById('result').textContent = result;
+        }
+        
+        function restartGame() {
+            document.getElementById('result').textContent = '';
+        }
+    </script>
+</body>
+</html>
