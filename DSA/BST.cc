@@ -62,6 +62,13 @@ void LevelOrder(BstNode* root){
 		Q.pop();
 	} 
 }
+// Preorder traversal , depth first search
+void Preorder(BstNode* root){
+	if(root == NULL) return ;
+	cout << root->data << " ";
+	Preorder(root->left);
+	Preorder(root->right);
+}
 int main() {
 	BstNode* root = NULL;  // Creating an empty tree
 	/*Code to test the logic*/
@@ -82,5 +89,9 @@ int main() {
 	if(Search(root,number) == true) cout<<"Found\n";
 	else cout<<"Not Found\n";
 	//Level Order Traversal
+	cout<<" Level Order Traversal : ";
 	LevelOrder(root);
+	cout<< '\n';
+	cout<< " Preorder Traversal : ";
+	Preorder(root);
 }
